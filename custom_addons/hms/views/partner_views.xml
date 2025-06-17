@@ -1,0 +1,27 @@
+<odoo>
+    <data noupdate="1">
+        <record id="view_partner_tree_inherit_hms" model="ir.ui.view">
+            <field name="name">res.partner.tree.inherit.hms</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[last()]" position="after">
+                    <field name="related_patient_id"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_partner_form_inherit_hms" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit.hms</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vat']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='sales_purchases']//group[1]" position="inside">
+                    <field name="related_patient_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

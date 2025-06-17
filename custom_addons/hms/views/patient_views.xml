@@ -1,0 +1,62 @@
+<odoo>
+    <data>
+        <record id="view_hms_patient_form" model="ir.ui.view">
+            <field name="name">hms.patient.form</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="image" widget="image" class="oe_avatar" options='{"preview_image": "image"}'/>
+                            <field name="first_name"/>
+                            <field name="last_name"/>
+                            <field name="birth_date"/>
+                            <field name="age" readonly="1"/>
+                            <field name="email"/>
+                            <field name="state"/>
+                            <field name="blood_type"/>
+                            <field name="pcr"/>
+                            <field name="cr_ratio" invisible="not pcr"/>
+                            <field name="department_id"/>
+                            <field name="department_capacity" readonly="1"/>
+                            <field name="doctor_ids" context="{'domain': [('department_id', '=', department_id)]}" invisible="not department_id"/>
+                            <field name="history" invisible="age &lt; 50"/>
+                            <field name="address"/>
+                        </group>
+                        <notebook>
+                            <page string="Log History">
+                                <field name="log_history_ids">
+                                    <list>
+                                        <field name="date"/>
+                                        <field name="created_by"/>
+                                        <field name="description"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hms_patient_list" model="ir.ui.view">
+            <field name="name">hms.patient.list</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="age"/>
+                    <field name="state"/>
+                    <field name="department_id"/>
+                    <field name="email"/>
+                </list>
+            </field>
+        </record>
+        <record id="action_hms_patient" model="ir.actions.act_window">
+            <field name="name">Patients</field>
+            <field name="res_model">hms.patient</field>
+            <field name="view_mode">list,form</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,43 @@
+<odoo>
+    <template id="report_patient_status">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="header">
+                    <h1>Patient Status Report</h1>
+                </div>
+                <div class="body">
+                    <p><strong>Name:</strong> <span t-field="doc.name"/></p>
+                    <p><strong>Age:</strong> <span t-field="doc.age"/></p>
+                    <p><strong>Department:</strong> <span t-field="doc.department_id.name"/></p>
+                    <p><strong>Doctors:</strong>
+                        <t t-foreach="doc.doctor_ids" t-as="doctor">
+                            <span t-field="doctor.name"/>
+                            <t t-if="not doctor_loop.last">, </t>
+                        </t>
+                    </p>
+
+                    <h3>Log History</h3>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>User</th>
+                            <th>Date</th>
+                            <th>Info</th>
+                        </tr>
+                        <t t-foreach="doc.log_history_ids" t-as="log">
+                            <tr>
+                                <td t-field="log.user_id.name"/>
+                                <td t-field="log.date"/>
+                                <td t-field="log.info"/>
+                            </tr>
+                        </t>
+                    </table>
+
+                    <p><strong>Birth date:</strong> <span t-field="doc.birth_date"/></p>
+                    <p><strong>PCR:</strong> <span t-field="doc.pcr"/></p>
+                    <p><strong>Blood Type:</strong> <span t-field="doc.blood_type"/></p>
+                    <p><strong>Email:</strong> <span t-field="doc.email"/></p>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
