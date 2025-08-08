@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="pos_payment_method_form_neoleap" model="ir.ui.view">
+        <field name="name">pos.payment.method.form.neoleap</field>
+        <field name="model">pos.payment.method</field>
+        <field name="inherit_id" ref="point_of_sale.pos_payment_method_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='payment_terminal']" position="after">
+                <group attrs="{'invisible': [('use_payment_terminal', '!=', 'neoleap')]}" name="neoleap_terminal">
+                    <field name="neoleap_terminal_ip" placeholder="ws://localhost:7000"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

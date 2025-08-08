@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PaymentScreenPaymentLines" t-inherit="point_of_sale.PaymentScreenPaymentLines" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('paymentline-body')]" position="inside">
+            <t t-if="line.payment_method.use_payment_terminal === 'neoleap'">
+                <div class="neoleap-status" t-if="line.get_payment_status() === 'waiting'">
+                    <i class="fa fa-spinner fa-spin"/> Payment request pending
+                </div>
+                <div class="neoleap-status success" t-if="line.get_payment_status() === 'done'">
+                    <i class="fa fa-check"/> Payment Successful
+                </div>
+            </t>
+        </xpath>
+    </t>
+
+</templates>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="payment_transaction_form_neoleap" model="ir.ui.view">
+        <field name="name">payment.transaction.form.neoleap</field>
+        <field name="model">payment.transaction</field>
+        <field name="inherit_id" ref="payment.payment_transaction_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='provider_details']" position="after">
+                <group attrs="{'invisible': [('provider_code', '!=', 'neoleap')]}" name="neoleap_details" string="NeoLeap Details">
+                    <field name="neoleap_transaction_id"/>
+                    <field name="neoleap_payment_url" widget="url"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
